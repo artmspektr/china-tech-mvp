@@ -1,0 +1,33 @@
+{
+  "name": "china-tech-mvp",
+  "version": "1.0.0",
+  "description": "China Tech News Bot - MVP для автоматического сбора и публикации новостей из Китая",
+  "main": "backend/api/cron/collect-content.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "cd admin && npm run build",
+    "start": "node backend/api/cron/collect-content.js",
+    "test": "node backend/api/test.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.3.0",
+    "jsdom": "^23.0.0",
+    "node-cron": "^3.0.3"
+  },
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "china",
+    "technology",
+    "news",
+    "ai",
+    "automation"
+  ],
+  "author": "MiniMax Agent",
+  "license": "MIT"
+}

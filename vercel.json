@@ -1,0 +1,52 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "admin/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    },
+    {
+      "src": "backend/api/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/backend/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/admin/dist/$1"
+    }
+  ],
+  "env": {
+    "TELEGRAM_BOT_TOKEN": "8301335619:AAHZctf9gsb03FUGE-uchryH-ZYRiO0D0nk",
+    "TELEGRAM_CHANNEL_ID": "@chinatech_news",
+    "GEMINI_KEY_1": "AIzaSyCxeBXRVl6jl7dzr3B_eC-OcvaCLfUVpB4"
+  },
+  "functions": {
+    "backend/api/cron/collect-content.js": {
+      "maxDuration": 300
+    },
+    "backend/api/scheduler/stats.js": {
+      "maxDuration": 60
+    },
+    "backend/api/ads/manager.js": {
+      "maxDuration": 60
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/cron/collect-content",
+      "schedule": "0 */2 * * *" // Каждые 2 часа
+    },
+    {
+      "path": "/api/scheduler/stats", 
+      "schedule": "*/5 * * * *" // Каждые 5 минут для обновления статистики
+    }
+  ]
+}
